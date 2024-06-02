@@ -1,71 +1,60 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView } from 'vue-router';
+
+import Tabmenu, { type TabMenuChangeEvent } from 'primevue/tabmenu';
+import type { MenuItem } from 'primevue/menuitem';
+
+import strings from './assets/strings';
+import router from './router';
+import { ref } from 'vue';
+
+const navStrings = strings.nav;
+// verifica a rota no primeiro carregamento para detectar o tab ativo
+let currentRoute: number | undefined = undefined; 
+switch (router.currentRoute.value.path) {
+  case navStrings.routePokedex: currentRoute = 0; break;
+  case navStrings.routeParty: currentRoute = 1; break;
+  case navStrings.routeTrainerCard: currentRoute = 2; break;
+  default: break;
+}
+const activeIndex = ref(currentRoute);
+
+// nomes das rotas de navegação, para o tabmenu que funciona como a navbar
+const navItems: MenuItem[] = [
+  {label: navStrings.labelPokedex},
+  {label: navStrings.labelParty,},
+  {label: navStrings.labelTrainerCard}
+];
+
+// faz a navegação entre as rotas
+function navigate(ev: TabMenuChangeEvent) {
+  activeIndex.value = ev.index;
+  switch (ev.index) {
+    case 0: router.push(navStrings.routePokedex); break;
+    case 1: router.push(navStrings.routeParty); break;
+    case 2: router.push(navStrings.routeTrainerCard); break;
+    default: activeIndex.value=undefined; break;
+  }
+}
 </script>
 
 <template>
+  <nav>
+    <Tabmenu :active-index="activeIndex" :model="navItems" @tab-change="navigate"></Tabmenu>
+  </nav>
   <RouterView />
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
   nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
-}
+  :deep(.p-tabmenu) {
+    width: fit-content;
+  }
+  :deep(.p-tabmenu-ink-bar) {
+    height: 4px;
+  }
 </style>

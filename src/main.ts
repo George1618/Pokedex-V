@@ -7,7 +7,7 @@ import PrimeVue from 'primevue/config';
 import App from './App.vue'
 import router from './router'
 
-import 'primevue/resources/themes/aura-light-green/theme.css'
+import 'primevue/resources/themes/aura-light-noir/theme.css'
 
 const app = createApp(App)
 
