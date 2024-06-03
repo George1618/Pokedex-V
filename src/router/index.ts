@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Pokedex from '@/pages/Pokedex.vue';
 import strings from '@/assets/strings';
 import Party from '@/pages/Party.vue';
+import Pokemon from '@/pages/Pokemon.vue';
+import Trainercard from '@/pages/TrainerCard.vue'
 
 const navStrings = strings.nav;
 
@@ -16,7 +18,7 @@ const router = createRouter({
     {
       path: navStrings.routePokemon+":id",
       name: navStrings.labelPokemon,
-      component: Pokedex
+      component: Pokemon
     },
     {
       path: navStrings.routeParty,
@@ -26,7 +28,7 @@ const router = createRouter({
     {
       path: navStrings.routeTrainerCard,
       name: navStrings.labelTrainerCard,
-      component: Pokedex
+      component: Trainercard
     }
   ]
 })

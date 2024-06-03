@@ -8,6 +8,9 @@ const strings = {
     routeParty: "/party",
     labelTrainerCard: "Trainer Card",
     routeTrainerCard: "/trainercard"
+  },
+  trainercard: {
+    favorite: "Meus pokémon favoritos: "
   }
 }
 
