@@ -1,5 +1,5 @@
 import type { apiResult } from "@/types/apiResult.type";
-import api from "./api.service";
+import api, { baseURL } from "./api.service";
 import type { pokemon } from "@/types/pokemon.type";
 import type { pokemonResult } from "@/types/pokemonResult.type";
 import { pokemonType } from "@/types/pokemonType.enum";
@@ -12,10 +12,11 @@ const offset = 0;
 
 // pega o pokémon pelo seu id (que equivale ao número na pokédex nacional)
 export async function getPokemon(id: number) {
+    let subroute = `pokemon/${id}`;
     try {
         if (id<=0) return;
-        const data = (await api.get(`pokemon/${id}`)).data
-        return toPokemon(data);
+        const data = (await api.get(subroute)).data
+        return toPokemon(data, baseURL+subroute);
     } catch (error) {
         console.error(error)
     }
@@ -24,7 +25,7 @@ export async function getPokemon(id: number) {
 export async function getPokemonByUrl(url: string) {
     try {
         const data = (await api.get(url)).data
-        return toPokemon(data);
+        return toPokemon(data, url);
     } catch (error) {
         console.error(error)
     }
@@ -40,7 +41,7 @@ export async function getAllPokemon() {
 }
 
 // simplifica o retorno de 1 pokémon da api para o tipo pokemon
-function toPokemon(data: pokemonResult) : pokemon | undefined {
+function toPokemon(data: pokemonResult, url: string) : pokemon | undefined {
     try {
         // calcula os tipos
         let type1: pokemonType | undefined = undefined, type2: pokemonType | undefined = undefined;
@@ -68,7 +69,8 @@ function toPokemon(data: pokemonResult) : pokemon | undefined {
             type2: type2,
             stats: stats,
             height: data.height,
-            weight: data.weight
+            weight: data.weight,
+            url: url
         }
     } catch (error) {
         console.error(error)

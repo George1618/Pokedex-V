@@ -18,7 +18,7 @@ watch(useRoute(), (to) => {
         case navStrings.routePokedex: activeIndex.value = 0; break;
         case navStrings.routeParty: activeIndex.value = 1; break;
         case navStrings.routeTrainerCard: activeIndex.value = 2; break;
-        default: break;
+        default: activeIndex.value =undefined; break;
     }
 })
 

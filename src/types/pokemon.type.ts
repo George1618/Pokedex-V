@@ -11,7 +11,8 @@ export type pokemon = {
     weight: number,
     stats: {
         -readonly [key in keyof typeof Stat]: number
-    }
+    },
+    url: string
 }
 
 // sobre os stats:

@@ -39,7 +39,11 @@ function typeGradient(type1: pokemonType, type2: pokemonType | undefined) {
         </template>
         <template #title><p>{{ pokemon.name.toUpperCase() }}</p></template>
         <template #subtitle>  
-            <p><span>{{ pokemon.type1 }}</span><span>{{ pokemon.type2 ? "/"+pokemon.type2 : "" }}</span></p>
+            <p>
+                <span>{{ "#"+`${pokemon.id}`.padStart(4, '0')+" | " }}</span>
+                <span>{{ pokemon.type1 }}</span>
+                <span>{{ pokemon.type2 ? "/"+pokemon.type2 : "" }}</span>
+            </p>
         </template>
     </Card>
     <Card v-else class="EmptyCard"></Card>
@@ -52,6 +56,12 @@ function typeGradient(type1: pokemonType, type2: pokemonType | undefined) {
     .p-card {
         box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
         cursor: pointer;
+    }
+    .p-card:hover {
+        background: rgba(0, 0, 0, 0.2) !important;
+    }
+    .p-card:hover p {
+        color: black;
     }
     
     :deep(.p-card-header), :deep(.p-card-body) {
