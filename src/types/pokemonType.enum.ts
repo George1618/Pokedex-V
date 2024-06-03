@@ -1,4 +1,4 @@
-export enum pokemonType {
+export enum PokemonType {
     grass = "Grass",
     fire = "Fire",
     water = "Water",

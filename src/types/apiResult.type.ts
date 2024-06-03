@@ -1,4 +1,4 @@
-export type apiResult = {
+export type ApiResult = {
     count: number,
     next: string,
     previous: string,

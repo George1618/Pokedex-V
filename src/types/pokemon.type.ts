@@ -1,12 +1,12 @@
-import { pokemonType } from "./pokemonType.enum"
+import { PokemonType } from "./pokemonType.enum"
 import type { Stat } from "./stat.enum"
 
-export type pokemon = {
+export type Pokemon = {
     id: number,
     name: string,
     icon: string,
-    type1: pokemonType,
-    type2: pokemonType | undefined,
+    type1: PokemonType,
+    type2: PokemonType | undefined,
     height: number,
     weight: number,
     stats: {

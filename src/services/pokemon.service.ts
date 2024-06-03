@@ -1,8 +1,8 @@
-import type { apiResult } from "@/types/apiResult.type";
+import type { ApiResult } from "@/types/apiResult.type";
 import api, { baseURL } from "./api.service";
-import type { pokemon } from "@/types/pokemon.type";
-import type { pokemonResult } from "@/types/pokemonResult.type";
-import { pokemonType } from "@/types/pokemonType.enum";
+import type { Pokemon } from "@/types/pokemon.type";
+import type { PokemonResult } from "@/types/pokemonResult.type";
+import { PokemonType } from "@/types/pokemonType.enum";
 import { Stat } from "@/types/stat.enum";
 
 // limita aos primeiros 151 pokémon, conforme requisitado
@@ -34,21 +34,21 @@ export async function getPokemonByUrl(url: string) {
 // entrega todos os pokémon
 export async function getAllPokemon() {
     try {
-        return (await api.get(`pokemon?limit=${limit}&offset=${offset}`)).data as apiResult
+        return (await api.get(`pokemon?limit=${limit}&offset=${offset}`)).data as ApiResult
     } catch (error) {
         console.error(error);
     }
 }
 
 // simplifica o retorno de 1 pokémon da api para o tipo pokemon
-function toPokemon(data: pokemonResult, url: string) : pokemon | undefined {
+function toPokemon(data: PokemonResult, url: string) : Pokemon | undefined {
     try {
         // calcula os tipos
-        let type1: pokemonType | undefined = undefined, type2: pokemonType | undefined = undefined;
+        let type1: PokemonType | undefined = undefined, type2: PokemonType | undefined = undefined;
         if (data.types===undefined) {console.info(data.id)}
         data.types.forEach(({slot, type}) => {
-            if (slot===1) type1 = pokemonType[type.name as keyof typeof pokemonType];
-            else if (slot===2) type2 = pokemonType[type.name as keyof typeof pokemonType];
+            if (slot===1) type1 = PokemonType[type.name as keyof typeof PokemonType];
+            else if (slot===2) type2 = PokemonType[type.name as keyof typeof PokemonType];
         });
         // calcula os stats
         let stats: {-readonly [stat in keyof typeof Stat]: number} = {

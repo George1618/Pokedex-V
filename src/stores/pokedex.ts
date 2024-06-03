@@ -1,5 +1,5 @@
 import { getAllPokemon } from '@/services/pokemon.service';
-import type { apiResult } from '@/types/apiResult.type';
+import type { ApiResult } from '@/types/apiResult.type';
 
 import { defineStore } from 'pinia';
 import { ref } from 'vue';

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import Card from 'primevue/card';
-import type { pokemon } from '@/types/pokemon.type';
+import type { Pokemon } from '@/types/pokemon.type';
 import { getPokemonByUrl } from '@/services/pokemon.service';
 import { PokeColors } from '@/types/colors.enum';
-import type { pokemonType } from '@/types/pokemonType.enum';
+import type { PokemonType } from '@/types/pokemonType.enum';
 import Color from '@/utils/Color.util';
 
 const props = defineProps<{
@@ -12,7 +12,7 @@ const props = defineProps<{
     action: (id: number) => void;
 }>();
 
-const pokemon = ref<pokemon | undefined>(undefined)
+const pokemon = ref<Pokemon | undefined>(undefined)
 
 onMounted(() => {
     // aqui se obtém os dados do pokémon
@@ -22,7 +22,7 @@ onMounted(() => {
 });
 
 // adicional: calcula as cores para o background do Card ir além do branco
-function typeGradient(type1: pokemonType, type2: pokemonType | undefined) {
+function typeGradient(type1: PokemonType, type2: PokemonType | undefined) {
     let color1 = Color.getColor(type1);
     let color2 = type2===undefined ? color1 : Color.getColor(type2);
     return `background: linear-gradient(135deg, ${color1}, 2%, #fff, 96%, ${color2});`;

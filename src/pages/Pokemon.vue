@@ -2,8 +2,8 @@
 import strings from '@/assets/strings';
 import { getPokemon } from '@/services/pokemon.service';
 import { usePartyStore } from '@/stores/party';
-import type { pokemon } from '@/types/pokemon.type';
-import type { pokemonType } from '@/types/pokemonType.enum';
+import type { Pokemon } from '@/types/pokemon.type';
+import type { PokemonType } from '@/types/pokemonType.enum';
 import Color from '@/utils/Color.util';
 import Button from 'primevue/button';
 import ProgressBar from 'primevue/progressbar';
@@ -15,7 +15,7 @@ const routeString = strings.nav.routePokemon;
 
 const route = useRoute();
 
-const pokemon = ref<pokemon | undefined>(undefined)
+const pokemon = ref<Pokemon | undefined>(undefined)
 
 // pega o id dos parâmetros da página e obtém os dados do pokémon
 function updatePokemon() {
@@ -37,16 +37,16 @@ const party = partyStore.party;
 function partyHas(pokemonUrl: string) { // verifica se o pokémon está ou não no time
     return party.findIndex(url => url===pokemonUrl)>=0
 }
-function addPokemon(pokemon: pokemon) { // tenta adicionar ao time; não dando certo, emite um alerta
+function addPokemon(pokemon: Pokemon) { // tenta adicionar ao time; não dando certo, emite um alerta
     let added = partyStore.addPokemon(pokemon.url);
     if (added===false) {alert(pokemonStrings.notAdded)}
 }
-function removePokemon(pokemon: pokemon) { // remove do time
+function removePokemon(pokemon: Pokemon) { // remove do time
     partyStore.removePokemon(pokemon.url)
 }
 
 // dá o background apenas para o primeiro tipo do pokémon
-function typeBackground(type: pokemonType) {
+function typeBackground(type: PokemonType) {
     return `background: ${Color.getColor(type)}`;
 }
 // usado para normalizar os valores dos stats em porcentagens

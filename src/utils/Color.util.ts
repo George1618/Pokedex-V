@@ -1,9 +1,9 @@
 import { PokeColors } from "@/types/colors.enum";
-import { pokemonType } from "@/types/pokemonType.enum";
+import { PokemonType } from "@/types/pokemonType.enum";
 
 export default class Color {
-    static getColor(type: pokemonType) {
-        let typeKey = type.toLowerCase() as keyof typeof pokemonType;
+    static getColor(type: PokemonType) {
+        let typeKey = type.toLowerCase() as keyof typeof PokemonType;
         return PokeColors[typeKey];
     }
 }

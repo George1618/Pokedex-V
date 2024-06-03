@@ -1,4 +1,4 @@
-export type pokemonResult = {
+export type PokemonResult = {
     height: number,
     id: number,
     name: string,
