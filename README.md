@@ -1,33 +1,11 @@
-# base-project
+# Pokedex-V
 
-This template should help get you started developing with Vue 3 in Vite.
+### Pokedex-V é uma aplicação web construída com o framework [Vue.js](https://vuejs.org/) junto com [PrimeVue](https://primevue.org/) e [Tailwind CSS](https://tailwindcss.com/). 
 
-## Recommended IDE Setup
+## Áreas 
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+### Na área Pokédex, a aplicação mostra, com o uso da API [PokeApi](https://pokeapi.co/), a pokédex de Kanto, ou seja, os primeiros 151 pokémon da franquia [Pokémon](https://www.pokemon.com/br/pokedex); e também permite ver detalhes de cada pokémon em uma página separada para cada.
 
-## Type Support for `.vue` Imports in TS
+### Na área de Party é possível ver um time de pokémon escolhidos pelo usuário. Para tanto, é necessário adicionar cada um a partir de sua página especial. 
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
+### Outra parte da aplicação contém uma área chamada Trainer Card, apresentando informações sobre mim, seja como aluno programador, seja como treinador.
